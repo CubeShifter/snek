@@ -1,0 +1,4 @@
+extends Node2D
+
+
+enum DIRECTIONS {UP,DOWN,LEFT,RIGHT}

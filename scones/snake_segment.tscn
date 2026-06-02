@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bwapdk8k61cna"]
+
+[ext_resource type="Script" uid="uid://cahobny8dgh7a" path="res://scribbs/snake_segment.gd" id="1_mijce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owrox"]
+size = Vector2(8, 8)
+
+[node name="Snake Segment" type="Area2D" unique_id=1585512703]
+script = ExtResource("1_mijce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619112236]
+shape = SubResource("RectangleShape2D_owrox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625409186]

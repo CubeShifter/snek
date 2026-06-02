@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d0o7p3jssu61c"]
+
+[ext_resource type="Script" uid="uid://dj1mn451b75uh" path="res://scribbs/snek_daddy.gd" id="1_edut3"]
+
+[node name="Snek Daddy" type="Node2D" unique_id=180673405]
+script = ExtResource("1_edut3")
