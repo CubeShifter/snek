@@ -7,8 +7,10 @@ enum DIRECTIONS {UP,DOWN,LEFT,RIGHT}
 var type = SEGMENT
 var previous_segment: snek_segment
 var dir = DIRECTIONS.LEFT
+
+@onready var sprite: AnimatedSprite2D = $sprite
 func _ready() -> void:
-	pass
+	update_sprite()
 func move_forward(new_dir):
 	
 	if type != TAIL:
@@ -24,3 +26,26 @@ func move_forward(new_dir):
 			position += Vector2.LEFT*16
 		DIRECTIONS.RIGHT:
 			position += Vector2.RIGHT*16
+	
+	update_sprite()
+	
+func update_sprite():
+	if dir == DIRECTIONS.LEFT:
+		sprite.rotation = 1.5 * PI
+	elif dir == DIRECTIONS.UP:
+		sprite.rotation = 0
+	elif dir == DIRECTIONS.RIGHT:
+		sprite.rotation = 0.5 * PI
+	elif dir == DIRECTIONS.DOWN:
+		sprite.rotation = PI
+	
+	if type == HEAD:
+		sprite.play("head")
+	elif type == TAIL	:
+		sprite.play("tail")
+	else:
+		sprite.play("straight")
+func _physics_process(delta: float) -> void:
+	if type == HEAD:
+		if get_overlapping_bodies().size() > 0:
+			get_tree().reload_current_scene()

@@ -32,7 +32,7 @@ func new_apple():
 func check_appels(snek):	
 	var snacks : Array
 	var snackable: Array[bool]
-	print(collector)
+	
 	for i in range(len(collector)):
 		snackable.append(false)
 	for i in range(len(snek)):
@@ -59,5 +59,4 @@ func change_possibly_snakes(len):
 		possible_appels.append([[false,true,false],[true,true,true]])
 		possible_appels.append([[false, true],[false, true],[true,true]])
 		possible_appels.append([[true, true],[true, false],[true,false]])
-	
 	

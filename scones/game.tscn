@@ -18,9 +18,23 @@ size = Vector2(12.5, 32)
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhdp6"]
 texture = ExtResource("6_l4tdf")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_g75wb"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_yhdp6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g75wb"]
+size = Vector2(2.3385525, 225.1341)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey3lh"]
+size = Vector2(21.01607, 11.700516)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c5v5e"]
+size = Vector2(2.3385525, 225.1341)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayrgk"]
+size = Vector2(22.619507, 15.129971)
 
 [node name="game" type="Node2D" unique_id=258888972]
 
@@ -151,6 +165,34 @@ z_index = 2
 position = Vector2(-128, -152)
 tile_set = SubResource("TileSet_g75wb")
 script = ExtResource("7_yhdp6")
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=789324018]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1797495613]
+position = Vector2(-143.97507, -12.500004)
+scale = Vector2(13.704984, 1.2392615)
+shape = SubResource("RectangleShape2D_g75wb")
+
+[node name="Area2D2" type="StaticBody2D" parent="." unique_id=1131129738]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=1202177390]
+position = Vector2(11.987534, -159.74998)
+scale = Vector2(13.704984, 1.2392615)
+shape = SubResource("RectangleShape2D_ey3lh")
+
+[node name="Area2D3" type="StaticBody2D" parent="." unique_id=451326049]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3" unique_id=1638408713]
+position = Vector2(144, -17)
+scale = Vector2(13.704984, 1.2392615)
+shape = SubResource("RectangleShape2D_c5v5e")
+
+[node name="Area2D4" type="StaticBody2D" parent="." unique_id=1904486406]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4" unique_id=1629436626]
+position = Vector2(14, 113.62501)
+scale = Vector2(13.704984, 1.2392615)
+shape = SubResource("RectangleShape2D_ayrgk")
 
 [connection signal="area_entered" from="Rhythmn/Perfect" to="Rhythmn" method="_on_perfect_area_entered"]
 [connection signal="area_exited" from="Rhythmn/Perfect" to="Rhythmn" method="_on_perfect_area_exited"]

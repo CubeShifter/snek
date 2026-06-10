@@ -1,20 +1,77 @@
 [gd_scene format=3 uid="uid://bwapdk8k61cna"]
 
 [ext_resource type="Script" uid="uid://cahobny8dgh7a" path="res://scribbs/snake_segment.gd" id="1_mijce"]
+[ext_resource type="Texture2D" uid="uid://dfrprelwo4lif" path="res://curved.png" id="2_2hku0"]
+[ext_resource type="Texture2D" uid="uid://bglm16u5e56vc" path="res://head.png" id="3_fm6qa"]
+[ext_resource type="Texture2D" uid="uid://pj4n5fyjdn05" path="res://straight.png" id="4_qliv1"]
+[ext_resource type="Texture2D" uid="uid://3ca83jqw541t" path="res://tail.png" id="5_mk8e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owrox"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfodg"]
+atlas = ExtResource("2_2hku0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j72la"]
+atlas = ExtResource("3_fm6qa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16yxm"]
+atlas = ExtResource("4_qliv1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf3lp"]
+atlas = ExtResource("5_mk8e3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tcqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfodg")
+}],
+"loop": true,
+"name": &"curved",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j72la")
+}],
+"loop": true,
+"name": &"head",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16yxm")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf3lp")
+}],
+"loop": true,
+"name": &"tail",
+"speed": 5.0
+}]
 
 [node name="Snake Segment" type="Area2D" unique_id=1585512703]
+collision_layer = 0
 script = ExtResource("1_mijce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619112236]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_owrox")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625409186]
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1594838151]
+z_index = 4
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_4tcqf")
+animation = &"straight"
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1031061453]
-z_index = 2
-offset_right = 16.0
-offset_bottom = 16.0
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -21,6 +21,7 @@ func assign_links():
 	for i in range(0,len(snek_list)-1):
 		snek_list[i].previous_segment = snek_list[i+1]
 		snek_list[i].type = 2
+		snek_list[i].sprite.z_index = snek_list.size() - i + 3
 		
 		
 	snek_list[0].type = 0
