@@ -1,18 +1,31 @@
 [gd_scene format=3 uid="uid://cvnccvs32067j"]
 
 [ext_resource type="PackedScene" uid="uid://c6m0sw6rjmxae" path="res://scones/beat block.tscn" id="1_cbq8h"]
+[ext_resource type="PackedScene" uid="uid://d0o7p3jssu61c" path="res://scones/snek_daddy.tscn" id="1_cp3fq"]
 [ext_resource type="AudioStream" uid="uid://cx3bwua4uc8nc" path="res://beat.wav" id="2_h6ke8"]
+[ext_resource type="Script" uid="uid://de7wka76144wm" path="res://scribbs/rhythmn.gd" id="2_j1x8k"]
 [ext_resource type="Texture2D" uid="uid://caefg2vodjqek" path="res://dance floor.png" id="3_cp3fq"]
+[ext_resource type="Script" uid="uid://0kovubyxthog" path="res://scribbs/dance_floor.gd" id="6_g75wb"]
+[ext_resource type="Texture2D" uid="uid://cekhvrutvd1jv" path="res://apple.png" id="6_l4tdf"]
+[ext_resource type="Script" uid="uid://ba0s3bmkwh228" path="res://scribbs/apple.gd" id="7_yhdp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbq8h"]
-size = Vector2(4, 32)
+size = Vector2(9, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6ke8"]
-size = Vector2(6, 32)
+size = Vector2(12.5, 32)
 
-[sub_resource type="GDScript" id="GDScript_44dbi"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhdp6"]
+texture = ExtResource("6_l4tdf")
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_g75wb"]
+sources/0 = SubResource("TileSetAtlasSource_yhdp6")
 
 [node name="game" type="Node2D" unique_id=258888972]
+
+[node name="Snek Daddy" parent="." unique_id=180673405 instance=ExtResource("1_cp3fq")]
+position = Vector2(0, -8)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1598393781]
 
@@ -28,6 +41,7 @@ offset_top = 128.0
 offset_right = 128.0
 offset_bottom = 160.0
 color = Color(0, 0, 0, 1)
+script = ExtResource("2_j1x8k")
 
 [node name="beat block" parent="Rhythmn" unique_id=1284003610 instance=ExtResource("1_cbq8h")]
 layout_mode = 0
@@ -42,6 +56,7 @@ offset_right = 4.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
+delay = 0.25
 
 [node name="beat block2" parent="Rhythmn" unique_id=1179230230 instance=ExtResource("1_cbq8h")]
 layout_mode = 0
@@ -56,7 +71,7 @@ offset_right = 4.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
-delay = 0.5
+delay = 0.75
 
 [node name="beat block3" parent="Rhythmn" unique_id=1227849799 instance=ExtResource("1_cbq8h")]
 layout_mode = 0
@@ -71,7 +86,7 @@ offset_right = 4.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
-delay = 1.0
+delay = 1.25
 
 [node name="beat block4" parent="Rhythmn" unique_id=486669201 instance=ExtResource("1_cbq8h")]
 layout_mode = 0
@@ -86,7 +101,7 @@ offset_right = 4.0
 offset_bottom = 32.0
 grow_horizontal = 1
 grow_vertical = 1
-delay = 1.5
+delay = 1.75
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Rhythmn" unique_id=1949175119]
 stream = ExtResource("2_h6ke8")
@@ -107,7 +122,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rhythmn/Early" unique_id=1472095790]
-position = Vector2(5, 16)
+position = Vector2(10.75, 16)
 shape = SubResource("RectangleShape2D_h6ke8")
 
 [node name="Late" type="Area2D" parent="Rhythmn" unique_id=1594841450]
@@ -116,7 +131,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rhythmn/Late" unique_id=909610335]
-position = Vector2(5, 16)
+position = Vector2(-0.75, 16)
 shape = SubResource("RectangleShape2D_h6ke8")
 
 [node name="ColorRect" type="ColorRect" parent="Rhythmn" unique_id=847248374]
@@ -129,4 +144,15 @@ offset_bottom = 32.0
 texture_repeat = 2
 position = Vector2(0, -24)
 texture = ExtResource("3_cp3fq")
-script = SubResource("GDScript_44dbi")
+script = ExtResource("6_g75wb")
+
+[node name="apple" type="TileMapLayer" parent="." unique_id=1857921593]
+z_index = 2
+position = Vector2(-128, -152)
+tile_set = SubResource("TileSet_g75wb")
+script = ExtResource("7_yhdp6")
+
+[connection signal="area_entered" from="Rhythmn/Perfect" to="Rhythmn" method="_on_perfect_area_entered"]
+[connection signal="area_exited" from="Rhythmn/Perfect" to="Rhythmn" method="_on_perfect_area_exited"]
+[connection signal="area_entered" from="Rhythmn/Early" to="Rhythmn" method="_on_early_area_entered"]
+[connection signal="area_exited" from="Rhythmn/Late" to="Rhythmn" method="_on_late_area_exited"]

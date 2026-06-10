@@ -1,6 +1,6 @@
 extends ColorRect
 
-const SPEED:= 128
+const SPEED:= 64
 @export var delay := 0.0
 @onready var collision: Area2D = $collision
 
@@ -15,9 +15,6 @@ func _ready() -> void:
 
 
 
-
-func _on_collision_area_entered(area: Area2D) -> void:
-	color = Color(0,1,0)
 
 
 func _on_collision_area_exited(area: Area2D) -> void:

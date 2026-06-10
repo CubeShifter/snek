@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://cahobny8dgh7a" path="res://scribbs/snake_segment.gd" id="1_mijce"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owrox"]
-size = Vector2(8, 8)
+size = Vector2(16, 16)
 
 [node name="Snake Segment" type="Area2D" unique_id=1585512703]
 script = ExtResource("1_mijce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1619112236]
+position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_owrox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625409186]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1031061453]
+z_index = 2
+offset_right = 16.0
+offset_bottom = 16.0

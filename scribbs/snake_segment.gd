@@ -5,8 +5,22 @@ class_name snek_segment
 enum {HEAD,TAIL,SEGMENT}
 enum DIRECTIONS {UP,DOWN,LEFT,RIGHT}
 var type = SEGMENT
-var previous_sement: snek_segment
-# Called when the node enters the scene tree for the first time.
-func move_forward():
-	if type = HEAD:
-		DIRECTIONS
+var previous_segment: snek_segment
+var dir = DIRECTIONS.LEFT
+func _ready() -> void:
+	pass
+func move_forward(new_dir):
+	
+	if type != TAIL:
+		previous_segment.move_forward(dir)
+	dir = new_dir
+	
+	match dir:
+		DIRECTIONS.UP:
+			position += Vector2.UP*16
+		DIRECTIONS.DOWN:
+			position += Vector2.DOWN*16
+		DIRECTIONS.LEFT:
+			position += Vector2.LEFT*16
+		DIRECTIONS.RIGHT:
+			position += Vector2.RIGHT*16
