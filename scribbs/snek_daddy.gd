@@ -20,8 +20,10 @@ func _ready():
 func assign_links():
 	for i in range(0,len(snek_list)-1):
 		snek_list[i].previous_segment = snek_list[i+1]
+		snek_list[i].type = 2
 		
 		
+	snek_list[0].type = 0
 	snek_list[len(snek_list)-1].type = 1
 
 func move_snek(dir):

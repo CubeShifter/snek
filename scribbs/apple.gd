@@ -25,14 +25,17 @@ func new_apple():
 		for y in range(0,len(grid[0])):
 			if grid[x][y]:
 				collector.erase(coords+Vector2(x,y))
+	
 func check_appels(snek):	
 	var snacks : Array
 	var snackable: Array[bool]
+	print(collector)
 	for i in range(len(collector)):
 		snackable.append(false)
 	for i in range(len(snek)):
 		snacks.append(local_to_map(snek[i].global_position)+Vector2i(8,10))
-		snackable[collector.find(snacks[i])] = true
+		if collector.find(snacks[i]) >= 0:
+			snackable[collector.find(snacks[i])] = true
 	if snackable.all(func(x):return x):
 		new_apple()
 		snek_daddy.new_snek()
